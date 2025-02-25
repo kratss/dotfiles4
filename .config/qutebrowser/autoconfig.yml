@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.notifications.enabled:
-    https://rkgamingstore.com: false
+  content.javascript.clipboard:
+    https://duckduckgo.com: access-paste

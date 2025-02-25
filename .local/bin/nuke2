@@ -1,3 +1,4 @@
+#!/bin/bash
 # Description: Sample script to play files in apps by file type or mime
 #
 # Usage: nuke filepath
@@ -82,11 +83,10 @@ if [ -n "$ext" ]; then
 fi
 handle_pdf() {
   if [ "$GUI" -ne 0 ]; then
-    if type zathura >/dev/null 2>&1; then
-      nohup zathura "${FPATH}" >/dev/null 2>&1 &
-    elif type evince >/dev/null 2>&1; then
+    if type evince >/dev/null 2>&1; then
       nohup evince "${FPATH}" >/dev/null 2>&1 &
-      echo "evince"
+    elif type zathura >/dev/null 2>&1; then
+      nohup zathura "${FPATH}" >/dev/null 2>&1 &
     else
       return
     fi
