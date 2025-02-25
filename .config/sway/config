@@ -62,12 +62,6 @@ set $menu dmenu_path | fuzzel
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg  ~/.local/share/backgrounds/pinkflowers.png fill
 #output * bg  /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#output * bg ~/Pictures/Wallpapers/s.png  fill
-#output * bg /usr/share/backgrounds/gnome/blobs-l.svg  fill 
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 0,1085
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 output eDP-1 scale 1.3 
@@ -271,7 +265,7 @@ mode "manipulate" {
     # Start your launcher and return to insert mode
     bindsym d exec $menu; mode "default"
 
-    # Switch keyboard layout 
+    # Switch keyboard layout
     bindsym x input type:keyboard xkb_switch_layout next
 
     # Start hawk file search 
@@ -405,11 +399,14 @@ mode "manipulate" {
 # Application Launchers {{{
     bindsym n exec qutebrowser-fast
 # }}}
+# Change mode: {{{ 
 bindsym Escape mode "default"
 bindsym Super_L mode "default"
 bindsym i mode "default"
 bindsym r mode "resize"
 bindsym o mode "launch"
+bindsym m mode "move"
+# }}}
 }
 # }}}
 # Launch mode {{{
@@ -429,6 +426,33 @@ mode "launch" {
   bindsym Return mode "manipulate"
   bindsym i mode "default"
   }
+# }}}
+# Move mode {{{
+mode "move" {
+  bindsym a workspace 1
+  bindsym s workspace 2
+  bindsym d workspace 3
+  bindsym f workspace 4
+  bindsym g workspace 5
+  bindsym h workspace 6
+  bindsym j workspace 7
+
+  bindsym Shift+a move container to workspace number 1
+  bindsym Shift+s move container to workspace number 2
+  bindsym Shift+d move container to workspace number 3
+  bindsym Shift+f move container to workspace number 4
+  bindsym Shift+g move container to workspace number 5
+  bindsym Shift+h move container to workspace number 6
+  bindsym Shift+j move container to workspace number 7
+
+  bindsym Return mode "default"
+  bindsym i mode "default"
+  bindsym Escape mode "default"
+  bindsym Super_L mode "manipulate"
+
+
+}
+# }}}
 # }}}
 # }}}
 ### Status Bar: {{{
@@ -450,7 +474,7 @@ bar {
 ### Startup  {{{~
 # Clipboard management
 exec copyq
-exec ~/scripts/clipboard-clear.fish
+exec clipboard-clear.fish
 
 # Mouse utility
 exec solaar --window hide
@@ -466,7 +490,7 @@ exec dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
 exec /usr/libexec/polkit-gnome-authentication-agent-1 
 
 # Launch apps at login
-exec ~/.config/sway/sway-startup.sh 
+exec sway-startup.sh 
 
 # Keyboard remapper
 # exec input-remapper-control --command autoload
