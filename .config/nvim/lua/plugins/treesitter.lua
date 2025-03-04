@@ -3,7 +3,13 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       highlight = { enable = true },
-      indent = { enable = true },
+      indent = {
+        enable = true,
+        disable = {
+          "css",
+          "html",
+        },
+      },
       ensure_installed = {
         "cpp",
         "css",
@@ -11,6 +17,7 @@ return {
         "gitattributes",
         "gitcommit",
         "gitignore",
+        "html",
         "latex",
         "make",
         "passwd",

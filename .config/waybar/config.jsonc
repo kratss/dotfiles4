@@ -15,14 +15,14 @@
         ],
     "modules-right": [
 	    "tray", 
-        "group/bt",
-        "group/internet",
+      "group/bt",
+      "group/internet",
 	    "group/mullvad",
-        "inhibitor",
+      "inhibitor",
 	    "sway/language",
-        "group/wireplumber",
-        "group/upower",
-        "privacy"
+      "group/wireplumber",
+      "group/upower",
+      "privacy",
         ],
     
     "battery": {

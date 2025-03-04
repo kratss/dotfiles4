@@ -4,6 +4,7 @@ swaymsg layout tabbed
 swaymsg exec gnome-calendar &
 swaymsg exec "flatpak run im.riot.Riot" &
 swaymsg exec thunderbird &
+swaymsg exec keepassxc &
 swaymsg exec tuxedo-control-center
 #swaymsg exec "mullvad-exclude firefox --profile \
 #  /home/m/.mozilla/firefox/pb8kmivp.SwayWM \
