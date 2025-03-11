@@ -50,4 +50,5 @@ require("lazy").setup({
       },
     },
   },
+  { "kratss/hello", dir = "~/.config/nvim/lua/hello/" },
 })

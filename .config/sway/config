@@ -8,11 +8,10 @@ include hawk-sway
 include /etc/sway/config.d/*
 
 ### Input configuration {{{
-input * {
+input type:keyboard {
     xkb_layout "us,de"
-    xkb_options grp:win_space_toggle,caps:super
-}
-
+    xkb_options caps:hyper
+ }
 # Example configuration:
 #
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
@@ -33,11 +32,13 @@ input * {
     } 
 # }}}
 ### Variables  {{{
+#
 # Logo key Mod4. Use Mod1 for Alt. Escape.
-set $mod Mod4 
-set $mod2 Mod4
+set $mod Hyper_L 
+set $mod2 mod4
+set $mod3 mod1
 
-# Home row direction keys, like vim
+# Home row direction k
 set $left h
 set $down j
 set $up k
@@ -82,7 +83,11 @@ exec swayidle -w \
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 # }}}
-### Key bindings {{{ 
+### Modes {{{
+bindsym $mod mode "manipulate"
+bindsym Alt_R mode "launch"
+
+## Default {{{
 # Basics: {{{
 #
     # Start a terminal
@@ -232,9 +237,7 @@ exec swayidle -w \
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod2+minus scratchpad show
 # }}}
-# Modes {{{
-bindsym Super_L mode "manipulate"
-bindsym Alt_R mode "launch"
+# }}}
 # Resize mode: {{{
 mode "resize" {
     bindsym $left resize shrink width 10px
@@ -249,11 +252,11 @@ mode "resize" {
 
     bindsym Return mode "manipulate"
     bindsym Escape mode "manipulate"
-    bindsym Super_L mode "default"
+    bindsym Caps_Lock mode "default"
  }
 bindsym $mod+r mode "resize"
 # }}}
-# Manipulation mode {{{
+## Manipulation mode {{{
 mode "manipulate" {
 # Basics: {{{
     # Start a terminal
@@ -401,7 +404,7 @@ mode "manipulate" {
 # }}}
 # Change mode: {{{ 
 bindsym Escape mode "default"
-bindsym Super_L mode "default"
+bindsym $mod mode "default"
 bindsym i mode "default"
 bindsym r mode "resize"
 bindsym o mode "launch"
@@ -411,6 +414,7 @@ bindsym m mode "move"
 # }}}
 # Launch mode {{{
 mode "launch" {
+  bindsym 0 exec $swaylock 
   bindsym d exec $menu; mode "default"
   bindsym f exec $term nnn; mode "default"
   bindsym shift+f exec $file_manager; mode "default"
@@ -421,7 +425,7 @@ mode "launch" {
   bindsym p exec qutebrowser --target private-window; mode "default"
   bindsym t exec $term; mode "default"
  
-  bindsym Super_L mode "default"
+  bindsym $mod mode "default"
   bindsym Escape mode "default"
   bindsym Return mode "manipulate"
   bindsym i mode "default"
@@ -448,11 +452,10 @@ mode "move" {
   bindsym Return mode "default"
   bindsym i mode "default"
   bindsym Escape mode "default"
-  bindsym Super_L mode "manipulate"
+  bindsym $mod mode "manipulate"
 
 
 }
-# }}}
 # }}}
 # }}}
 ### Status Bar: {{{
