@@ -12,9 +12,13 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
+
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
+import os
 
+with open(os.path.expanduser("~/.private/kagi"), "r") as f:
+    kagi = f.read().strip()
 ### Privacy and Security
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -115,7 +119,7 @@ c.url.yank_ignored_parameters = [
 ##
 ### Preferences
 c.url.searchengines = {
-    "k": "https://kagi.com/search?token=TOKEN={}",
+    "k": kagi,
     "d": "https://duckduckgo.com/?q={}",
     "DEFAULT": "https://lite.duckduckgo.com/lite/?q={}",
     "dict": "https://www.dict.cc/?s={}",
