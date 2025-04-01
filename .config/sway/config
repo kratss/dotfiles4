@@ -35,6 +35,7 @@ input type:keyboard {
 #
 # Logo key Mod4. Use Mod1 for Alt. Escape.
 set $mod Hyper_L 
+#set $mod Alt_R
 set $mod2 mod4
 set $mod3 mod1
 
@@ -45,7 +46,7 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term footclient 
+set $term foot 
 exec foot --server #allows fast launching of footclient over regular foot
 
 # Preferred file manager
@@ -76,8 +77,10 @@ workspace 4 output 'Acer Technologies KC242Y A 11220382D3W01'
 #
 exec swayidle -w \
           timeout 1800 'swaylock -f -c 000000' \
-          timeout 1860 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' 
-#         before-sleep 'swaylock -f -c 000000'
+          timeout 1860 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+          before-sleep 'swaylock -f -c 000000'
+
+bindswitch lid:on systemctl suspend
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -85,7 +88,6 @@ exec swayidle -w \
 # }}}
 ### Modes {{{
 bindsym $mod mode "manipulate"
-bindsym Alt_R mode "launch"
 
 ## Default {{{
 # Basics: {{{
@@ -100,9 +102,9 @@ bindsym Alt_R mode "launch"
     bindsym $mod2+d exec $menu
 
     # Switch keyboard layout
-    bindsym $mod2+Shift+f input type:keyboard xkb_layout next
+    bindsym $mod2+x input type:keyboard xkb_switch_layout next
 
-    # Start hawk file search 
+  # Start hawk file search 
     bindsym $mod2+Shift+d $file_finder
    
     # Drag floating windows by holding down $mod and left mouse button.
@@ -414,7 +416,7 @@ bindsym m mode "move"
 # }}}
 # Launch mode {{{
 mode "launch" {
-  bindsym 0 exec $swaylock 
+  bindsym 0 exec $
   bindsym d exec $menu; mode "default"
   bindsym f exec $term nnn; mode "default"
   bindsym shift+f exec $file_manager; mode "default"

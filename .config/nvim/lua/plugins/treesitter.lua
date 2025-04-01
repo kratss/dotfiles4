@@ -21,6 +21,7 @@ return {
         "latex",
         "make",
         "passwd",
+        "scss",
         "sway",
         "todotxt",
         "vimdoc",

@@ -11,3 +11,5 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.textwidth = 0
   end,
 })
+
+vim.opt.swapfile = true
