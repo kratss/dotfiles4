@@ -1,4 +1,8 @@
-function sshrubyrose --wraps='$SSHRUBYROSE' --description 'alias sshrubyrose $SSHRUBYROSE'
-  $SSHRUBYROSE $argv
-        
+function sshrubyrose --wraps='$sshrubyrose' --description 'alias sshrubyrose $sshrubyrose'
+    argparse r/root -- $argv
+    if test -n "$_flag_root"
+        $sshrubyroseroot $argv
+    else
+        $sshrubyrose $argv
+    end
 end
