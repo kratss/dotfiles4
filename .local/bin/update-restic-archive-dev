@@ -1,7 +1,0 @@
-#!/usr/bin/env fish
-source ~/.private/restic.env
-restic backup \
-    --exclude-caches \
-    --files-from=$XDG_CONFIG_HOME/restic/backup-dirs \
-    --exclude=$XDG_CONFIG_HOME/restic/exclude-patterns \
-    --exclude-file=$XDG_CONFIG_HOME/restic/exclude-dirs

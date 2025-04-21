@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.javascript.enabled:
-    global: true
+  content.media.audio_capture:
+    https://jitsi.endor.cyou: true

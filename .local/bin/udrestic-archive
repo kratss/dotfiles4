@@ -31,6 +31,11 @@ function parse_config
 end
 # Fish struggles to return arrays
 # Initialize global variables inside parse_config instead
+argparse h/help -- $argv
+if test -n "$_flag_help"
+    echo "Update restic archive"
+    echo "This wrapper parses a config file and passes the arguments to restic. The wrapper looks in XDG_CONFIG_HOME/restic/config.ini and ~/.config/restic/config.ini by default"
+end
 parse_config
 source $env
 restic backup $args
