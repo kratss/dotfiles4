@@ -100,7 +100,7 @@ c.tabs.tabs_are_windows = True
 c.tabs.show = "never"
 c.url.default_page = "about:blank"
 c.url.start_pages = "about:blank"
-c.window.title_format = "qb{audio}{private}{title_sep}{perc} {host}"
+c.window.title_format = "qb{audio}{private}{perc}: {current_title}"
 c.zoom.default = "100%"
 ##
 ### Keybindings

@@ -1,0 +1,8 @@
+#! /bin/dash
+swaymsg workspace 1
+swaymsg layout tabbed
+swaymsg exec gnome-calendar &
+swaymsg exec "mullvad-exclude flatpak run im.riot.Riot" &
+swaymsg exec thunderbird &
+swaymsg exec keepassxc &
+swaymsg exec tuxedo-control-center &

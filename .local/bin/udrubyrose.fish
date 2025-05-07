@@ -12,7 +12,8 @@ else if test -n "$_flag_unison"
 else
     set sync rsync -rvz -e 'ssh -p 3333' --info=progress2 \
         ~/Documents/rubyrose/ root@$iprubyrose:/var/www/ \
-        --exclude ~/Documents/rubyrose/rcxeblog/_site/
+        --exclude ~/Documents/rubyrose/rcxeblog/_site/ \
+        --delete
 end
 while true
     $sync

@@ -491,7 +491,7 @@ exec mako
 exec dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
 #exec gnome-keyring-daemon --start --components=secrets
 
-# Polkit allows auth pop-ups in Nautilus etc
+# Polkit allows auth pop-ups in Nautilus, password manager stuff etc
 exec /usr/libexec/polkit-gnome-authentication-agent-1 
 
 # Launch apps at login

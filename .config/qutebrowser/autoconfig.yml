@@ -6,5 +6,9 @@
 
 config_version: 2
 settings:
-  content.media.audio_capture:
-    https://jitsi.endor.cyou: true
+  content.geolocation:
+    https://www.dhl.de: false
+    https://www.nissanusa.com: false
+    https://www.thuisbezorgd.nl: false
+  content.register_protocol_handler:
+    https://office.mailbox.org#app=io.ox/mail/compose/main:compose&mailto=%25s: false
