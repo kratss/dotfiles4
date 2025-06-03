@@ -6,9 +6,5 @@
 
 config_version: 2
 settings:
-  content.geolocation:
-    https://www.dhl.de: false
-    https://www.nissanusa.com: false
-    https://www.thuisbezorgd.nl: false
-  content.register_protocol_handler:
-    https://office.mailbox.org#app=io.ox/mail/compose/main:compose&mailto=%25s: false
+  content.javascript.clipboard:
+    https://kagi.com: access-paste

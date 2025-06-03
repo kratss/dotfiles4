@@ -16,7 +16,7 @@ if status is-interactive
 end
 
 source ~/.private/env.fish
-set -gx EDITOR nvim
 set -x DEFAULT_TERM foot
+set -x EDITOR nvim
 set -gx RCS_DIR ~/.local/share/rcs/
 set -gx XDG_CONFIG_HOME $HOME/.config

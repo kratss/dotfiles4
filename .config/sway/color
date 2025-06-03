@@ -5,6 +5,7 @@ client.focused           4d443d 75dad7 000000 ff5555 75dad7ff
 client.focused_tab_title 4d443d 279e9d 000000                 
 client.focused_inactive  4d443d d8caf6 000000 ffa998 d8caf6ff 
 client.unfocused         4d443d bbbbcb 000000 ffa998 bbbbcbff
+#client.unfocused         4d443d bbbbcb 000000 ffa998 bbbbcbff
 #client.urgent
 
 #client.focused             focused window

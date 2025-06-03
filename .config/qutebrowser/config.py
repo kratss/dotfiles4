@@ -58,6 +58,11 @@ config.set(
     False,
     "file:///home/m/.local/share/qutebrowser/userscripts/*",
 )
+
+# Allow sites to write to (not read from) the clipboard
+config.set("content.javascript.clipboard", "access-paste", "https://kagi.com")
+
+
 c.content.local_storage = True
 
 # URL parameters to strip with `:yank url`.
@@ -71,6 +76,7 @@ c.url.yank_ignored_parameters = [
     "utm_content",
     "utm_name",
 ]
+c.content.geolocation = False
 ##
 ### Preferences
 c.url.searchengines = {

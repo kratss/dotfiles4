@@ -21,12 +21,13 @@
       "inhibitor",
 	    "sway/language",
       "group/wireplumber",
-      "group/upower",
+      "battery",
       "privacy",
         ],
     
     "battery": {
-        "format": "{icon}{capacity}",
+        "bat": "BAT0",
+        "format": "{icon} {capacity}%",
         "format-icons": ["", "", " ", "", ""],
         "format-time": "{H}sss{MM}"
         },
@@ -57,8 +58,6 @@
     "clock": {
 	    "format": "{:%a, %d %b  %H:%M}",
 	    "interval": 30,	
-	    "on-click": "~/.config/waybar/modules/panel-toggle.fish",
-        "on-click-right": "swaymsg bar mode hide bar-0",
 	    "tooltip": false,
 	    "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
         },
@@ -129,7 +128,7 @@
         "format-ethernet": "{ifname}",
         "format-disconnected": "",
         "format-disconnected": "",
-        "interface": "wlp54s0",
+        "interface": "wlp0s20f3",
         "interval": 3600, //polling seemingly does nothing
         "tooltip": false
         },
@@ -235,56 +234,6 @@
 },
 
 
-{
-    "name": "panel",
-    "exclusive": false,
-    "id": "bar-1",
-    "ipc": true,
-    "layer": "top",
-    "margin-top": 10,
-    "margin-left": 250,
-    "margin-right": 250,
-    "margin-bottom":60,
-    "passthrough": false,
-    "position": "top",
-    "reload_style_on_change": true,
-
-    "modules-right": [
- 	    "bluetooth#panel",
-        "custom/upower",
-        "wireplumber#panel",
-        "custom/notifications"
-        ],
-
-    "bluetooth#panel": {
-        "format": " <b>Bluetooth</b>",
-    	"format-connected": "<b>Bluetooth</b>\rDevices: {num_connections}\r",
-	    "justify": "left",
-        "on-click": "bluetooth toggle"
-        },
-    "custom/notifications": {
-        "escape": true,
-        "exec": "~/.config/waybar/modules/notification-center.fish",
-        "format": "{}asdf",
-        "on-click": "~/.config/waybar/modules/notification-center.fish",
-        "return-type": "json",
-        "signal": 3
-        },
-    "custom/upower": {
-	    "escape": false,
-        "exec": "~/.config/waybar/modules/battery-levels.sh",
-	    "format": "<b>Battery</b>\n{}",
-	    "interval": 10,
-        "return-type": "json",
-	    "tooltip": false 
-	    },
-    "wireplumber#panel": {
-        "format": "<b>Audio</b>\r{node_name}   {volume}%",
-        "format-muted": "{node_name}{volume}%",
-        "on-click": "helvum"
-        }
-
-}
 ]
 
 

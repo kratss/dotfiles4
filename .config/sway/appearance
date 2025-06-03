@@ -1,10 +1,10 @@
 # Color configuration for sway
 # vim:fileencoding=utf-8:ft=conf:foldmethod=marker
-gaps inner 0
-gaps outer 0
-font Cantarell 10
-default_border normal 5
-smart_borders off 
+gaps inner 9
+gaps outer -9
+font Cantarell 9
+default_border normal 3
+smart_borders on 
 
 #output * bg  #222222 solid_color
 #output * bg ~/.local/share/backgrounds/01.jpg fill

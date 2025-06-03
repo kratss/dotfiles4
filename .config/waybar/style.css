@@ -43,7 +43,7 @@ border-radius: 2px;
 }
 window {
 background-color: @base-bg;
-color: @base-text;
+color: #BBBBBB;
 border-bottom: 5px #0fffff;
 border-radius: 0px;
 }

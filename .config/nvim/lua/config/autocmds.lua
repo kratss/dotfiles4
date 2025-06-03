@@ -21,4 +21,17 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Automatically save changes every second
+local timer = nil
+vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+  callback = function()
+    if timer then
+      timer:stop()
+    end
+    timer = vim.defer_fn(function()
+      vim.cmd("silent! write")
+    end, 3000) -- 1000 ms = 1 second
+  end,
+})
+
 vim.opt.swapfile = true
