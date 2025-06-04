@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
     end
     timer = vim.defer_fn(function()
       vim.cmd("silent! write")
-    end, 3000) -- 1000 ms = 1 second
+    end, 1500) -- 1000 ms = 1 second
   end,
 })
 

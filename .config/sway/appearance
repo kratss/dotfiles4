@@ -1,7 +1,7 @@
 # Color configuration for sway
 # vim:fileencoding=utf-8:ft=conf:foldmethod=marker
-gaps inner 9
-gaps outer -9
+gaps inner 6
+gaps outer -6
 font Cantarell 9
 default_border normal 3
 smart_borders on 
