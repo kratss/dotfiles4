@@ -35,3 +35,7 @@ vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
 })
 
 vim.opt.swapfile = true
+
+-- Set window title
+vim.opt.title = true
+vim.opt.titlestring = "vi: %t"

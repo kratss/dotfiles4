@@ -5,6 +5,7 @@
 include appearance
 include color
 include hawk-sway
+include window-titles
 include /etc/sway/config.d/*
 
 ### Input configuration {{{
@@ -35,11 +36,13 @@ input type:keyboard {
 #
 # Logo key Mod4. Use Mod1 for Alt. Escape.
 set $mod Hyper_L 
-set $mod2 mod1
+set $mod4 mod1
+set $mod3 Pause
+set $mod2 Alt_R
 #set $mod2 mod4
 #set $mod3 mod1
 
-# Home row direction k
+# Home row direction  
 set $left h
 set $down j
 set $up k
@@ -66,31 +69,26 @@ set $menu dmenu_path | fuzzel
 #output * bg  /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output eDP-1 scale 1.3 
-output DP-1 scale 1.0
+output $laptop scale 1.1 
+output $monitor scale 1.0
 workspace 1 output DP-1
 workspace 2 output DP-1
 workspace 3 output DP-1
 workspace 4 output DP-1
-workspace 5 output eDP-1
-bindswitch lid:on output $laptop disable
-bindswitch lid:off output $laptop enable
+workspace 5 output DP-1
+bindswitch lid:on output "eDP-1" disable
+bindswitch lid:off output "eDP-1" enable
 # }}}
 ### Idle configuration {{{
 #
-exec swayidle -w \
-          timeout 1800 'swaylock -f -c 000000' \
-          timeout 1860 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-          before-sleep 'swaylock -f -c 000000'
 
-#
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 # }}}
 ### Modes {{{
 bindsym $mod mode "manipulate"
-
+bindsym $mod3 mode "manipulate"
 ## Default {{{
 # Basics: {{{
 #
@@ -182,11 +180,6 @@ bindsym $mod mode "manipulate"
     bindsym $mod2+9 workspace number 9
     bindsym $mod2+0 workspace number 10
 
-    bindsym XF86Explorer workspace number 1
-    bindsym XF86HomePage workspace number 2
-    bindsym XF86Mail workspace number 3
-    bindsym XF86Calculator workspace number 4
-
     # Move focused container to workspace
     bindsym $mod2+Shift+1 move container to workspace number 1
     bindsym $mod2+Shift+2 move container to workspace number 2
@@ -242,7 +235,32 @@ bindsym $mod mode "manipulate"
     bindsym $mod2+minus scratchpad show
 # }}}
 # }}}
-# Resize mode: {{{
+## Fancy mode {{{
+mode "fancy" {
+    # Volume
+    bindsym h exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+    bindsym l exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
+    bindsym m exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%"
+
+    # Brightness
+    bindsym --locked j exec light -U 1
+    bindsym --locked k exec light -A 1
+
+    # Media
+    bindsym q exec playerctl position 5-
+    bindsym w exec playerctl play-pause
+    bindsym e exec playerctl position 5+ 
+    bindsym r exec playerctl previous
+    bindsym t exec playerctl next
+    
+    # Modes
+    bindsym Escape mode "default"
+    bindsym $mod mode "default"
+    bindsym $mod3 mode "default"
+    bindsym i mode "default"
+}
+#}}}
+## Resize mode: {{{
 mode "resize" {
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
@@ -253,10 +271,11 @@ mode "resize" {
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
-
-    bindsym Return mode "manipulate"
-    bindsym Escape mode "manipulate"
-    bindsym Caps_Lock mode "default"
+    
+    bindsym i mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Hyper_L mode "manipulate"
  }
 bindsym $mod+r mode "resize"
 # }}}
@@ -287,6 +306,10 @@ mode "manipulate" {
 # Volume and Brightness: {{{
 #
     # Control volume
+    bindsym F11 exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+    bindsym F12 exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
+    bindsym F10 exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%"
+
     bindsym XF86AudioLowerVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
     bindsym XF86AudioRaiseVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
     bindsym XF86AudioMute exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%"
@@ -335,6 +358,8 @@ mode "manipulate" {
 #   }}}
 # Workspaces: {{{
     # Switch to workspace
+    bindsym c workspace next 
+    bindsym u workspace prev 
     bindsym 1 workspace number 1
     bindsym 2 workspace number 2
     bindsym 3 workspace number 3
@@ -345,11 +370,6 @@ mode "manipulate" {
     bindsym 8 workspace number 8
     bindsym 9 workspace number 9
     bindsym 0 workspace number 10
-
-    bindsym XF86Explorer workspace number 1
-    bindsym XF86HomePage workspace number 2
-    bindsym XF86Mail workspace number 3
-    bindsym XF86Calculator workspace number 4
 
     # Move focused container to workspace
     bindsym Shift+1 move container to workspace number 1
@@ -364,21 +384,16 @@ mode "manipulate" {
     bindsym Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
 # }}}
 # Layout: {{{
-#
-    # You can "split" the current object of your focus with
-    # b or $mod+v, for horizontal and vertical splits
-    # respectively.
     bindsym b splith
     bindsym v splitv
 
-    # Switch the current container between different layout styles
     bindsym s layout stacking
     bindsym w layout tabbed
     bindsym e layout toggle split
 
-    # Make the current focus fullscreen
     bindsym f fullscreen
 
     # Toggle the current focus between tiling and floating mode
@@ -409,24 +424,24 @@ mode "manipulate" {
 # Change mode: {{{ 
 bindsym Escape mode "default"
 bindsym $mod mode "default"
+bindsym $mod3 mode "default"
 bindsym i mode "default"
 bindsym r mode "resize"
-bindsym o mode "launch"
-bindsym m mode "move"
+bindsym o mode "open"
+#bindsym m mode "move"
+bindsym g mode "fancy"
 # }}}
 }
 # }}}
-# Launch mode {{{
-mode "launch" {
-  bindsym 0 exec $
+## Open mode {{{
+mode "open" {
   bindsym d exec $menu; mode "default"
   bindsym f exec $term nnn; mode "default"
   bindsym shift+f exec $file_manager; mode "default"
   bindsym k exec keepassxc; mode "default"
   bindsym m exec mullvad-browser; mode "default"
   bindsym n exec qutebrowser-fast; mode "default"
-  bindsym shift+n exec qutebrowser; mode "default"
-  bindsym p exec qutebrowser --target private-window; mode "default"
+  bindsym shift+n exec qutebrowser --target private-window; mode "default"
   bindsym t exec $term; mode "default"
  
   bindsym $mod mode "default"
@@ -435,36 +450,48 @@ mode "launch" {
   bindsym i mode "default"
   }
 # }}}
-# Move mode {{{
+## Move mode {{{
 mode "move" {
+
+  # Move focus
+  bindsym $left focus left
+  bindsym $down focus down
+  bindsym $up focus up
+  bindsym $right focus right
+  bindsym Left focus left
+  bindsym Down focus down
+  bindsym Up focus up
+  bindsym Right focus right
+  bindsym Tab focus right
+  bindsym Shift+Tab focus left
   bindsym a workspace 1
   bindsym s workspace 2
   bindsym d workspace 3
   bindsym f workspace 4
   bindsym g workspace 5
-  bindsym h workspace 6
-  bindsym j workspace 7
 
+  # Move focused window 
+  bindsym Shift+$left move left
+  bindsym Shift+$down move down
+  bindsym Shift+$up move up
+  bindsym Shift+$right move right
+  bindsym Shift+Left move left
+  bindsym Shift+Down move down
+  bindsym Shift+Up move up
+  bindsym Shift+Right move right
   bindsym Shift+a move container to workspace number 1
   bindsym Shift+s move container to workspace number 2
   bindsym Shift+d move container to workspace number 3
   bindsym Shift+f move container to workspace number 4
   bindsym Shift+g move container to workspace number 5
-  bindsym Shift+h move container to workspace number 6
-  bindsym Shift+j move container to workspace number 7
 
-  bindsym Return mode "default"
-  bindsym i mode "default"
-  bindsym Escape mode "default"
-  bindsym $mod mode "manipulate"
-
-
+  # Change mode
+  bindsym i mode "default" 
 }
 # }}}
 # }}}
 ### Status Bar: {{{
 # Read `man 5 sway-bar` for more information about this section.
-#exec_always nwg-panel
 bar {
 	swaybar_command waybar
     id bar-0
@@ -491,19 +518,16 @@ exec mako
 
 # GNOME stuff like authentication for mounting drives
 exec dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
-#exec gnome-keyring-daemon --start --components=secrets
+exec gnome-keyring-daemon --start --components=secrets
 
 # Polkit allows auth pop-ups in Nautilus, password manager stuff etc
-exec /usr/libexec/polkit-gnome-authentication-agent-1 
+# exec /usr/libexec/polkit-gnome-authentication-agent-1 
 
 # Launch apps at login
-exec sway-startup.sh 
-
-# Keyboard remapper
-# exec input-remapper-control --command autoload
+exec sway-startup.dash
 
 # Screen yellowing / night light mode
-exec wlsunset -l 50.6 -L 8.40  -t 3000 -T 7000
+exec wlsunset -l 50.6 -L 8.40  -t 4000 -T 4800
 
 # Automatically switch to bluetooth speaker on connection
 exec pactl load-module module-switch-on-connect
@@ -511,7 +535,6 @@ exec pactl load-module module-switch-on-connect
 # Set environment variable so sway can see it 
 exec --no-startup-id sh -c 'export PATH=$PATH:~/.local/bin'
 exec env PATH=$PATH:~/.local/bin/
-
 # }}}
 
 

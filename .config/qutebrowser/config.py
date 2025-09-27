@@ -18,6 +18,11 @@ import os
 with open(os.path.expanduser("~/.private/kagi"), "r") as f:
     kagi = f.read().strip()
 
+### Performance
+c.qt.chromium.low_end_device_mode = "auto"
+
+
+##
 ### Privacy and Security
 config.set("content.cookies.accept", "all", "chrome-devtools://*")
 config.set("content.cookies.accept", "all", "devtools://*")
@@ -89,8 +94,10 @@ c.url.searchengines = {
 
 # Time interval (in milliseconds) between auto-saves of
 # config/cookies/etc.
-# Type: Int
 c.auto_save.interval = 15000
+
+
+config.set("content.notifications.enabled", True, "https://matrix.endor.cyou")
 ##
 ### Appearance
 # Background color for hints. Note that you can use a `rgba(...)` value
@@ -106,7 +113,7 @@ c.tabs.tabs_are_windows = True
 c.tabs.show = "never"
 c.url.default_page = "about:blank"
 c.url.start_pages = "about:blank"
-c.window.title_format = "qb{audio}{private}{perc}: {current_title}"
+c.window.title_format = "{audio}{private}{perc} {current_title}"
 c.zoom.default = "100%"
 ##
 ### Keybindings
@@ -118,8 +125,10 @@ config.bind("fw", "hint all window")
 config.bind("fp", "hint links run open -p {hint-url}")
 config.bind("fy", "hint all yank")
 config.unbind("d", mode="normal")
-config.bind("dd", "tab-close")
+# config.bind("dd", "tab-close")
 config.bind(",r", "spawn --userscript readability")
+config.bind("ck", "scroll-page 0 -1")
+config.bind("cj", "scroll-page 0 1")
 # Aliases for commands. The keys of the given dictionary are the
 # aliases, while the values are the commands they map to.
 # Type: Dict
@@ -145,3 +154,5 @@ config.bind(
 ### Other
 c.qt.environ = {"NODE_PATH": "/usr/local/lib/node_modules"}
 ##
+
+# c.content.cookies.store = False

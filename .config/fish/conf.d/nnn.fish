@@ -5,4 +5,4 @@ c:~/Documents/career/;\
 t:~/Documents/career/grad-school/thesis/;\
 a:~/Documents/career/applications/full-time;\
 "
-set -x NNN_OPENER nuke2
+set -x NNN_OPENER fifi
