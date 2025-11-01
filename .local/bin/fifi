@@ -28,6 +28,8 @@ function get_mime
             handle_calendar
         case 'text/*'
             handle_text
+        case 'video/*'
+            handle_video
             exit
     end
 end
@@ -70,7 +72,8 @@ function handle_calendar
     exit
 end
 function handle_opendoctext
-    libreoffice $file
+    libreoffice $file &
+    exit
 end
 function handle_pdf
     flatpak run org.gnome.Evince $file 2>/dev/null &
@@ -84,6 +87,9 @@ end
 function handle_web
     qutebrowser-fast $file 2>/dev/null &
     exit
+end
+function handle_video
+    mpv $file 2>/dev/null &
 end
 argparse -- $argv
 or return

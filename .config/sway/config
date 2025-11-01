@@ -53,7 +53,7 @@ set $term foot
 exec foot --server #allows fast launching of footclient over regular foot
 
 # Preferred file manager
-set $file_manager thunar
+set $file_manager nautilus 
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can 
@@ -438,6 +438,7 @@ mode "open" {
   bindsym d exec $menu; mode "default"
   bindsym f exec $term nnn; mode "default"
   bindsym shift+f exec $file_manager; mode "default"
+  bindsym g exec qutebrowser "https://grok.com"; mode "default"
   bindsym k exec keepassxc; mode "default"
   bindsym m exec mullvad-browser; mode "default"
   bindsym n exec qutebrowser-fast; mode "default"
@@ -514,7 +515,7 @@ exec clipboard-clear.fish
 exec solaar --window hide
 
 # Notifications
-exec mako
+# exec mako # doesn't need to be explicity started, happens on its own
 
 # GNOME stuff like authentication for mounting drives
 exec dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
@@ -522,6 +523,7 @@ exec gnome-keyring-daemon --start --components=secrets
 
 # Polkit allows auth pop-ups in Nautilus, password manager stuff etc
 # exec /usr/libexec/polkit-gnome-authentication-agent-1 
+exec /usr/bin/lxpolkit 
 
 # Launch apps at login
 exec sway-startup.dash

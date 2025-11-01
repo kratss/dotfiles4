@@ -98,6 +98,8 @@ c.auto_save.interval = 15000
 
 
 config.set("content.notifications.enabled", True, "https://matrix.endor.cyou")
+config.set("content.notifications.enabled", True, "https://element.endor.cyou")
+config.set("content.notifications.enabled", True, "https://grok.com")
 ##
 ### Appearance
 # Background color for hints. Note that you can use a `rgba(...)` value
@@ -147,7 +149,7 @@ config.bind(
 )
 config.bind(
     "pw",
-    "spawn --userscript qute-keepassxc --key 3CA7E8841F46A31597F6C01B35046DEB11AB2E81",
+    "spawn --userscript qute-keepassxc --key 28AEDCD98A2C86697B8AD79A797CE9C1A316E76D",
     mode="normal",
 )
 ##
