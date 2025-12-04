@@ -24,6 +24,7 @@ function get_mime
         case 'image/*'
             eval $img
         case 'audio/*'
+            echo MIME
             eval $audio
         case text/calendar
             eval $calendar
@@ -65,7 +66,7 @@ set img "flatpak run org.gnome.Loupe '$file' & exit"
 set odt "libreoffice $file & exit"
 set pdf "flatpak run org.gnome.Evince '$file' & exit"
 set txt "$DEFAULT_TERM $EDITOR '$file' 2>/dev/null & exit"
-set video "mpv $file 2>/dev/null & exit"
+set video "mpv '$file' 2>/dev/null & exit"
 set web "qutebrowser-fast '$file' 2>/dev/null & exit"
 set type (file --mime-type -b $file)
 get_special

@@ -10,7 +10,7 @@ if status is-interactive
     abbr --add v --position command nvim
     abbr -a --position command cddl cd ~/Downloads/
     abbr -a --position command hk hawk.fish
-    abbr -a wl --position command wl-copy
+    abbr -a wc --position command wl-copy
     abbr -a sdu --position command sudo dnf update
     alias ls "ls --group-directories-first --color --width=80"
 end

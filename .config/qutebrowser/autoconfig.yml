@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.media.audio_capture:
-    https://grok.com: false
+  content.notifications.enabled:
+    https://glassalmanac.com: false

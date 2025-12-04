@@ -36,10 +36,9 @@ input type:keyboard {
 #
 # Logo key Mod4. Use Mod1 for Alt. Escape.
 set $mod Hyper_L 
-set $mod4 mod1
+set $mod2 Mod4
 set $mod3 Pause
-set $mod2 Alt_R
-#set $mod2 mod4
+set $mod4 mod1
 #set $mod3 mod1
 
 # Home row direction  
@@ -438,7 +437,7 @@ mode "open" {
   bindsym d exec $menu; mode "default"
   bindsym f exec $term nnn; mode "default"
   bindsym shift+f exec $file_manager; mode "default"
-  bindsym g exec qutebrowser "https://grok.com"; mode "default"
+  bindsym g exec qutebrowser-fast "https://grok.com"; mode "default"
   bindsym k exec keepassxc; mode "default"
   bindsym m exec mullvad-browser; mode "default"
   bindsym n exec qutebrowser-fast; mode "default"
@@ -526,7 +525,7 @@ exec gnome-keyring-daemon --start --components=secrets
 exec /usr/bin/lxpolkit 
 
 # Launch apps at login
-exec sway-startup.dash
+exec sway-startup.bash
 
 # Screen yellowing / night light mode
 exec wlsunset -l 50.6 -L 8.40  -t 4000 -T 4800
@@ -538,6 +537,3 @@ exec pactl load-module module-switch-on-connect
 exec --no-startup-id sh -c 'export PATH=$PATH:~/.local/bin'
 exec env PATH=$PATH:~/.local/bin/
 # }}}
-
-
-

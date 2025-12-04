@@ -52,5 +52,5 @@ SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
 SETUVAR fish_user_paths:/home/m/\x2elocal/bin
 SETUVAR notifications:a\x1eb\x1edog
-SETUVAR temp:todo\x2emd\x3a\x20text/plain
+SETUVAR temp:asdf
 SETUVAR waybar_panel_visibility:true
