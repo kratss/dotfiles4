@@ -21,6 +21,7 @@ cp -rf \
     ~/.config/tridactyl/ \
     ~/.config/waybar/ \
     ./.config/
+echo $PWD
 git add .*
 git commit -m "Update dotfiles (Commit generated automatically)"
 git push -u origin master
